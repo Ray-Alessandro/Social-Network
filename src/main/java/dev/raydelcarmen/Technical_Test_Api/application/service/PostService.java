@@ -17,9 +17,11 @@ public class PostService implements PostUseCase {
     @Override
     public void createPost(String username, String message) {
         User user = userRepository.findByUsername(username);
+
         if (user == null) {
             throw new UserNotFoundException(username);
         }
+
         user.addPost(new Post(username, message));
         userRepository.save(user);
     }

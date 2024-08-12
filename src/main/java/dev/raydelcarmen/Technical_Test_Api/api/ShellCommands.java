@@ -28,8 +28,8 @@ public class ShellCommands {
         try {
             String fullMessage = String.join(" ", messageParts);
 
-            postUseCase.createPost(username, fullMessage);
-            System.out.println(username + " posted -> \"" + fullMessage + "\" @" +
+            postUseCase.createPost(cleanUsername(username), fullMessage);
+            System.out.println(cleanUsername(username) + " posted -> \"" + fullMessage + "\" @" +
                     LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -39,7 +39,7 @@ public class ShellCommands {
     @ShellMethod("Follow a user")
     public void follow(String follower, String followee) {
         try {
-            followUseCase.followUser(follower, followee);
+            followUseCase.followUser(cleanUsername(follower), cleanUsername(followee));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -48,10 +48,14 @@ public class ShellCommands {
     @ShellMethod("View a user's dashboard")
     public void dashboard(String username) {
         try {
-            var posts = dashboardUseCase.getUserDashboard(username);
+            var posts = dashboardUseCase.getUserDashboard(cleanUsername(username));
             posts.forEach(System.out::println);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private String cleanUsername(String username) {
+        return username.startsWith("@") ? username.substring(1) : username;
     }
 }

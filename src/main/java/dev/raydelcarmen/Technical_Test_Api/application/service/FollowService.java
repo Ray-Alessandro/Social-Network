@@ -21,6 +21,7 @@ public class FollowService implements FollowUseCase {
         if (follower == null) {
             throw new UserNotFoundException(followerUsername);
         }
+
         if (followee == null) {
             throw new UserNotFoundException(followeeUsername);
         }
