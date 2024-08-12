@@ -13,7 +13,7 @@ public class ApplicationInitializer {
 
         // Crear usuarios
         User alfonso = new User("Alfonso");
-        User ivan = new User("Ivan");
+        User ivan = new User("Iván");
         User alicia = new User("Alicia");
 
         // Guardar usuarios en el repositorio

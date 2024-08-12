@@ -24,7 +24,7 @@ public class DashboardService implements DashboardUseCase {
             throw new UserNotFoundException(username);
         }
         return user.getTimeline().stream()
-                .map(post -> post.getMessage() + " @" + post.getUsername() + " @" +
+                .map(post -> "\""+post.getMessage() + "\" @" + post.getUsername() + " @" +
                         post.getTimestamp().format(DateTimeFormatter.ofPattern("HH:mm")))
                 .collect(Collectors.toList());
     }
