@@ -11,12 +11,12 @@ public class ApplicationInitializer {
     @Autowired
     public ApplicationInitializer(UserRepository userRepository) {
 
-        // Crear usuarios
+        //Create users
         User alfonso = new User("Alfonso");
         User ivan = new User("Iván");
         User alicia = new User("Alicia");
 
-        // Guardar usuarios en el repositorio
+        //Save users in the repository
         userRepository.save(alfonso);
         userRepository.save(ivan);
         userRepository.save(alicia);
