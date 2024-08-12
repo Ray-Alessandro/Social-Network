@@ -5,6 +5,10 @@ import dev.raydelcarmen.Technical_Test_Api.application.ports.in.FollowUseCase;
 import dev.raydelcarmen.Technical_Test_Api.application.ports.in.PostUseCase;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @ShellComponent
 public class ShellCommands {
@@ -20,10 +24,13 @@ public class ShellCommands {
     }
 
     @ShellMethod("Post a message as a user")
-    public void post(String username, String message) {
+    public void post(@ShellOption String username, @ShellOption(arity = 120) String[] messageParts) {
         try {
-            postUseCase.createPost(username, message);
-            System.out.println(username + " posted -> \"" + message + "\"");
+            String fullMessage = String.join(" ", messageParts);
+
+            postUseCase.createPost(username, fullMessage);
+            System.out.println(username + " posted -> \"" + fullMessage + "\" @" +
+                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
