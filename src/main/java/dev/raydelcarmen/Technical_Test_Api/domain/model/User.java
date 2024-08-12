@@ -35,10 +35,12 @@ public class User {
     }
 
     public List<Post> getTimeline() {
-        List<Post> timeline = new ArrayList<>(posts);
+        List<Post> timeline = new ArrayList<>();
+
         for (User followedUser : following) {
             timeline.addAll(followedUser.getPosts());
         }
+
         return timeline;
     }
 }

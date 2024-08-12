@@ -1,4 +1,4 @@
-package dev.raydelcarmen.Technical_Test_Api.config;
+package dev.raydelcarmen.Technical_Test_Api.shared.config;
 
 import dev.raydelcarmen.Technical_Test_Api.application.ports.out.UserRepository;
 import dev.raydelcarmen.Technical_Test_Api.domain.model.User;
@@ -13,7 +13,7 @@ public class ApplicationInitializer {
 
         // Crear usuarios
         User alfonso = new User("Alfonso");
-        User ivan = new User("Ivan");
+        User ivan = new User("Iván");
         User alicia = new User("Alicia");
 
         // Guardar usuarios en el repositorio
