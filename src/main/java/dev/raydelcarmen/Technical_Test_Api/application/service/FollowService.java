@@ -4,7 +4,9 @@ import dev.raydelcarmen.Technical_Test_Api.application.ports.in.FollowUseCase;
 import dev.raydelcarmen.Technical_Test_Api.application.ports.out.UserRepository;
 import dev.raydelcarmen.Technical_Test_Api.shared.exception.UserNotFoundException;
 import dev.raydelcarmen.Technical_Test_Api.domain.model.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FollowService implements FollowUseCase {
 
     private final UserRepository userRepository;
@@ -14,7 +16,7 @@ public class FollowService implements FollowUseCase {
     }
 
     @Override
-    public void followUser(String followerUsername, String followeeUsername) {
+    public String followUser(String followerUsername, String followeeUsername) {
         User follower = userRepository.findByUsername(followerUsername);
         User followee = userRepository.findByUsername(followeeUsername);
 
@@ -29,9 +31,9 @@ public class FollowService implements FollowUseCase {
         if (!follower.isFollowing(followee)) {
             follower.follow(followee);
             userRepository.save(follower);
-            System.out.println("\"" + followerUsername + " empezó a seguir a " + followeeUsername + "\"");
+            return ("\"" + followerUsername + " empezó a seguir a " + followeeUsername + "\"") ;
         } else {
-            System.out.println("\"" + followerUsername + " ya está siguiendo a @" + followeeUsername + "\"");
+            return ("\"" + followerUsername + " ya está siguiendo a @" + followeeUsername + "\"");
         }
     }
 }

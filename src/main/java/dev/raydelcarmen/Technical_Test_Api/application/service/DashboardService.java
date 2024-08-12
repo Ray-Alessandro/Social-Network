@@ -6,11 +6,13 @@ import dev.raydelcarmen.Technical_Test_Api.shared.exception.NoPostsFoundExceptio
 import dev.raydelcarmen.Technical_Test_Api.shared.exception.NoUsersFollowedException;
 import dev.raydelcarmen.Technical_Test_Api.shared.exception.UserNotFoundException;
 import dev.raydelcarmen.Technical_Test_Api.domain.model.User;
+import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class DashboardService implements DashboardUseCase {
 
     private final UserRepository userRepository;
